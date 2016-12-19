@@ -1,0 +1,69 @@
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\MixingData.exe.config
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\MixingData.exe
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\MixingData.pdb
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.dll
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.SqlServer.dll
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.SqlServerCompact.dll
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\System.Data.SqlServerCe.dll
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.xml
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.SqlServer.xml
+e:\Work\VS\WPF\MixingData\MixingData\bin\Release\EntityFramework.SqlServerCompact.xml
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.csprojResolveAssemblyReference.cache
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MainWindow.g.cs
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\App.g.cs
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\GeneratedInternalTypeHelper.g.cs
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData_MarkupCompile.cache
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData_MarkupCompile.lref
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MainWindow.baml
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.g.resources
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.Properties.Resources.resources
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.csproj.GenerateResource.Cache
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.exe
+e:\Work\VS\WPF\MixingData\MixingData\obj\Release\MixingData.pdb
+e:\7\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\MixingData.exe.config
+e:\7\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.exe
+e:\7\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.pdb
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\MixingData.exe.config
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.exe
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.pdb
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\MixingData.exe
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\MixingData.pdb
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.dll
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.SqlServer.dll
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.SqlServerCompact.dll
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\System.Data.SqlServerCe.dll
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.xml
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.SqlServer.xml
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\bin\Release\EntityFramework.SqlServerCompact.xml
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.csprojResolveAssemblyReference.cache
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MainWindow.g.cs
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\App.g.cs
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\GeneratedInternalTypeHelper.g.cs
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData_MarkupCompile.cache
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData_MarkupCompile.lref
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MainWindow.baml
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.g.resources
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.Properties.Resources.resources
+e:\8\Проект Visual Studio 2013\MixingData\MixingData\obj\Release\MixingData.csproj.GenerateResource.Cache
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\MixingData.exe.config
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.exe
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.pdb
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\MixingData.exe
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\MixingData.pdb
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.dll
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.SqlServer.dll
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.SqlServerCompact.dll
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\System.Data.SqlServerCe.dll
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.xml
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.SqlServer.xml
+e:\Work\Git\MixingData\mixingdata\MixingData\bin\Release\EntityFramework.SqlServerCompact.xml
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.csprojResolveAssemblyReference.cache
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MainWindow.g.cs
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\App.g.cs
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\GeneratedInternalTypeHelper.g.cs
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData_MarkupCompile.cache
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData_MarkupCompile.lref
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MainWindow.baml
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.g.resources
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.Properties.Resources.resources
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Release\MixingData.csproj.GenerateResource.Cache

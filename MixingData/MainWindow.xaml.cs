@@ -408,7 +408,7 @@ namespace MixingData
         //выводит сообщение с информацией о программе
         private void MixingDataAboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Данная программа реализует сетевую модель обезличивания персональных данных методом перемешивания.\nАвтор: 'unchase'", "О программе ", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Данная программа реализует сетевую модель обезличивания персональных данных методом перемешивания.\nАвтор: 'unchase' (https://github.com/unchase)", "О программе ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MixingDataCancelDepersonalizeButton_Click(object sender, RoutedEventArgs e)

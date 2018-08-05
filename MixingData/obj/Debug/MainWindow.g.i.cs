@@ -42,7 +42,7 @@ namespace MixingData {
     public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
-        #line 19 "..\..\MainWindow.xaml"
+        #line 21 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem MixingDataExitMenuItem;
         
@@ -50,7 +50,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 23 "..\..\MainWindow.xaml"
+        #line 26 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.MenuItem MixingDataAboutMenuItem;
         
@@ -58,7 +58,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 28 "..\..\MainWindow.xaml"
+        #line 31 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.StackPanel MixingDataLeftSideStackPanel;
         
@@ -66,7 +66,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 30 "..\..\MainWindow.xaml"
+        #line 34 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid MixingDataPersonalDataDataGrid;
         
@@ -74,7 +74,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 78 "..\..\MainWindow.xaml"
+        #line 87 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataDeletePersonDataButton;
         
@@ -82,7 +82,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 89 "..\..\MainWindow.xaml"
+        #line 100 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataClearPersonDataButton;
         
@@ -90,7 +90,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 100 "..\..\MainWindow.xaml"
+        #line 113 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataUpdatePersonDataButton;
         
@@ -98,7 +98,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 116 "..\..\MainWindow.xaml"
+        #line 130 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataFirstNamePersonTextBox;
         
@@ -106,7 +106,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 120 "..\..\MainWindow.xaml"
+        #line 134 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataLastNamePersonTextBox;
         
@@ -114,7 +114,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 124 "..\..\MainWindow.xaml"
+        #line 138 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataPatronymicPersonTextBox;
         
@@ -122,7 +122,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 127 "..\..\MainWindow.xaml"
+        #line 142 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBlock MixingDataDateOfBirthPersonTextBox;
         
@@ -130,7 +130,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 130 "..\..\MainWindow.xaml"
+        #line 146 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DatePicker MixingDataDateOfBirthPersonTextBox1;
         
@@ -138,7 +138,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 136 "..\..\MainWindow.xaml"
+        #line 152 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataAddressPersonTextBox;
         
@@ -146,7 +146,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 146 "..\..\MainWindow.xaml"
+        #line 164 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataSplitOnTextBox;
         
@@ -154,7 +154,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 155 "..\..\MainWindow.xaml"
+        #line 174 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBox MixingDataShiftOnTextBox;
         
@@ -162,7 +162,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 166 "..\..\MainWindow.xaml"
+        #line 185 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.StackPanel MixingDataMiddleSideStackPanel;
         
@@ -170,7 +170,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 170 "..\..\MainWindow.xaml"
+        #line 191 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataDepersonalizeButton;
         
@@ -178,7 +178,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 179 "..\..\MainWindow.xaml"
+        #line 202 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataCancelDepersonalizeButton;
         
@@ -186,7 +186,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 200 "..\..\MainWindow.xaml"
+        #line 225 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.StackPanel MixingDataRightSideStackPanel;
         
@@ -194,7 +194,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 202 "..\..\MainWindow.xaml"
+        #line 228 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid MixingDataDepersonalizeDataDataGrid;
         
@@ -202,7 +202,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 247 "..\..\MainWindow.xaml"
+        #line 278 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataClearDepersonalizeDataAndKeysDataGrid;
         
@@ -210,7 +210,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 258 "..\..\MainWindow.xaml"
+        #line 291 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Button MixingDataSaveDepersonalizeDataDataGrid;
         
@@ -218,7 +218,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 274 "..\..\MainWindow.xaml"
+        #line 310 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.CheckBox MixingDataHideKeysDataGridCheckBox;
         
@@ -226,7 +226,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 279 "..\..\MainWindow.xaml"
+        #line 316 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.DataGrid MixingDataKeysDataGrid;
         
@@ -234,7 +234,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 321 "..\..\MainWindow.xaml"
+        #line 361 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.Primitives.StatusBar MixingDataMessagesStatusBar;
         
@@ -242,7 +242,7 @@ namespace MixingData {
         #line hidden
         
         
-        #line 328 "..\..\MainWindow.xaml"
+        #line 369 "..\..\MainWindow.xaml"
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
         internal System.Windows.Controls.TextBlock MixingDataMessagesTextBlock;
         
@@ -282,7 +282,7 @@ namespace MixingData {
             case 1:
             this.MixingDataExitMenuItem = ((System.Windows.Controls.MenuItem)(target));
             
-            #line 20 "..\..\MainWindow.xaml"
+            #line 22 "..\..\MainWindow.xaml"
             this.MixingDataExitMenuItem.Click += new System.Windows.RoutedEventHandler(this.MixingDataExitMenuItem_Click);
             
             #line default
@@ -291,7 +291,7 @@ namespace MixingData {
             case 2:
             this.MixingDataAboutMenuItem = ((System.Windows.Controls.MenuItem)(target));
             
-            #line 24 "..\..\MainWindow.xaml"
+            #line 27 "..\..\MainWindow.xaml"
             this.MixingDataAboutMenuItem.Click += new System.Windows.RoutedEventHandler(this.MixingDataAboutMenuItem_Click);
             
             #line default
@@ -306,7 +306,7 @@ namespace MixingData {
             case 5:
             this.MixingDataDeletePersonDataButton = ((System.Windows.Controls.Button)(target));
             
-            #line 81 "..\..\MainWindow.xaml"
+            #line 90 "..\..\MainWindow.xaml"
             this.MixingDataDeletePersonDataButton.Click += new System.Windows.RoutedEventHandler(this.MixingDataDeletePersonDataButton_Click);
             
             #line default
@@ -315,7 +315,7 @@ namespace MixingData {
             case 6:
             this.MixingDataClearPersonDataButton = ((System.Windows.Controls.Button)(target));
             
-            #line 92 "..\..\MainWindow.xaml"
+            #line 103 "..\..\MainWindow.xaml"
             this.MixingDataClearPersonDataButton.Click += new System.Windows.RoutedEventHandler(this.MixingDataClearPersonDataButton_Click);
             
             #line default
@@ -324,7 +324,7 @@ namespace MixingData {
             case 7:
             this.MixingDataUpdatePersonDataButton = ((System.Windows.Controls.Button)(target));
             
-            #line 103 "..\..\MainWindow.xaml"
+            #line 116 "..\..\MainWindow.xaml"
             this.MixingDataUpdatePersonDataButton.Click += new System.Windows.RoutedEventHandler(this.MixingDataUpdatePersonDataButton_Click);
             
             #line default
@@ -351,7 +351,7 @@ namespace MixingData {
             case 14:
             this.MixingDataSplitOnTextBox = ((System.Windows.Controls.TextBox)(target));
             
-            #line 149 "..\..\MainWindow.xaml"
+            #line 167 "..\..\MainWindow.xaml"
             this.MixingDataSplitOnTextBox.KeyDown += new System.Windows.Input.KeyEventHandler(this.MixingDataSplitOnTextBox_KeyDown);
             
             #line default
@@ -360,7 +360,7 @@ namespace MixingData {
             case 15:
             this.MixingDataShiftOnTextBox = ((System.Windows.Controls.TextBox)(target));
             
-            #line 159 "..\..\MainWindow.xaml"
+            #line 178 "..\..\MainWindow.xaml"
             this.MixingDataShiftOnTextBox.KeyDown += new System.Windows.Input.KeyEventHandler(this.MixingDataShiftOnTextBox_KeyDown);
             
             #line default
@@ -372,7 +372,7 @@ namespace MixingData {
             case 17:
             this.MixingDataDepersonalizeButton = ((System.Windows.Controls.Button)(target));
             
-            #line 173 "..\..\MainWindow.xaml"
+            #line 194 "..\..\MainWindow.xaml"
             this.MixingDataDepersonalizeButton.Click += new System.Windows.RoutedEventHandler(this.MixingDataDepersonalizeButton_Click);
             
             #line default
@@ -381,7 +381,7 @@ namespace MixingData {
             case 18:
             this.MixingDataCancelDepersonalizeButton = ((System.Windows.Controls.Button)(target));
             
-            #line 182 "..\..\MainWindow.xaml"
+            #line 205 "..\..\MainWindow.xaml"
             this.MixingDataCancelDepersonalizeButton.Click += new System.Windows.RoutedEventHandler(this.MixingDataCancelDepersonalizeButton_Click);
             
             #line default
@@ -396,7 +396,7 @@ namespace MixingData {
             case 21:
             this.MixingDataClearDepersonalizeDataAndKeysDataGrid = ((System.Windows.Controls.Button)(target));
             
-            #line 250 "..\..\MainWindow.xaml"
+            #line 281 "..\..\MainWindow.xaml"
             this.MixingDataClearDepersonalizeDataAndKeysDataGrid.Click += new System.Windows.RoutedEventHandler(this.MixingDataClearDepersonalizeDataAndKeysDataGrid_Click);
             
             #line default
@@ -405,7 +405,7 @@ namespace MixingData {
             case 22:
             this.MixingDataSaveDepersonalizeDataDataGrid = ((System.Windows.Controls.Button)(target));
             
-            #line 261 "..\..\MainWindow.xaml"
+            #line 294 "..\..\MainWindow.xaml"
             this.MixingDataSaveDepersonalizeDataDataGrid.Click += new System.Windows.RoutedEventHandler(this.MixingDataSaveDepersonalizeDataDataGrid_Click);
             
             #line default

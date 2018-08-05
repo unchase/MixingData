@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -19,9 +18,9 @@ namespace MixingData
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
-        public PersonContext db;
+        public PersonContext Db;
 
         public MainWindow()
         {
@@ -32,21 +31,21 @@ namespace MixingData
             MixingDataMessagesTextBlock.Text = "Программа запущена";
 
             //через эту переменную (контекст данных) будет осуществляться связь и работа с БД
-            db = new PersonContext();
+            Db = new PersonContext();
 
             try
             {
                 // загружаем данные из БД
-                db.Persons.Load();
-                db.NewPersons.Load();
-                db.Keys.Load();
+                Db.Persons.Load();
+                Db.NewPersons.Load();
+                Db.Keys.Load();
 
                 // устанавливаем привязку к кэшу
-                MixingDataPersonalDataDataGrid.ItemsSource = db.Persons.Local.ToBindingList();
-                MixingDataDepersonalizeDataDataGrid.ItemsSource = db.NewPersons.Local.ToBindingList();
-                MixingDataKeysDataGrid.ItemsSource = db.Keys.Local.ToBindingList();
+                MixingDataPersonalDataDataGrid.ItemsSource = Db.Persons.Local.ToBindingList();
+                MixingDataDepersonalizeDataDataGrid.ItemsSource = Db.NewPersons.Local.ToBindingList();
+                MixingDataKeysDataGrid.ItemsSource = Db.Keys.Local.ToBindingList();
 
-                this.Closing += MainWindow_Closing;
+                Closing += MainWindow_Closing;
             }
             catch (Exception ex)
             {
@@ -63,7 +62,7 @@ namespace MixingData
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //освобождает контекст данных из памяти
-            db.Dispose();
+            Db.Dispose();
         }
 
         //удаляет выбранные элементы из БД
@@ -78,7 +77,7 @@ namespace MixingData
                     var person = MixingDataPersonalDataDataGrid.SelectedItems[j] as Person;
                     if (person != null)
                     {
-                        db.Persons.Remove(person);
+                        Db.Persons.Remove(person);
                     }
                     else
                     {
@@ -86,7 +85,7 @@ namespace MixingData
                     }
                 }
             }
-            db.SaveChanges();
+            Db.SaveChanges();
 
             //меняем фон у StatusBar'а и выводим в него сообщение
             MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -110,24 +109,22 @@ namespace MixingData
         //сохраняет несохраненные изменения в БД
         private void MixingDataUpdatePersonDataButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MixingDataPersonalDataDataGrid.Items != null)
+            var persons = new List<Person>();
+            for (var i = 0; i < Db.Persons.Local.Count; i++)
             {
-                var persons = new List<Person>();
-                for (var i = 0; i < db.Persons.Local.Count; i++)
-                {
-                    if (db.Persons.Local[i] == null) continue;
-                    persons.Add(db.Persons.Local[i]);
-                }
-                db.Persons.Local.Clear();
-                db.SaveChanges();
-                foreach (var person in persons)
-                {
-                    if (person.Id == new Guid())
-                        person.Id = Guid.NewGuid();
-                    db.Persons.Local.Add(person);
-                }
+                if (Db.Persons.Local[i] == null) continue;
+                persons.Add(Db.Persons.Local[i]);
             }
-            db.SaveChanges();
+            Db.Persons.Local.Clear();
+            Db.SaveChanges();
+            foreach (var person in persons)
+            {
+                if (person.Id == new Guid())
+                    person.Id = Guid.NewGuid();
+                Db.Persons.Local.Add(person);
+            }
+            
+            Db.SaveChanges();
 
             //меняем фон у StatusBar'а и выводим в него сообщение
             MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -137,11 +134,9 @@ namespace MixingData
         private void MixingDataDepersonalizeButton_Click(object sender, RoutedEventArgs e)
         {
             //запоминаем в переменных: splitCount - количество подмножеств исходного множества персональных данных, shift - циклический сдвиг значений перемешиваемых аттрибутов внутри каждого подмножества
-            var splitCount = 1;
-            var shift = 1;
-            if (!int.TryParse(MixingDataSplitOnTextBox.Text, out splitCount))
+            if (!int.TryParse(MixingDataSplitOnTextBox.Text, out var splitCount))
                 return;
-            if (!int.TryParse(MixingDataShiftOnTextBox.Text, out shift))
+            if (!int.TryParse(MixingDataShiftOnTextBox.Text, out var shift))
                 return;
 
             //меняем фон у StatusBar'а и выводим в него сообщение
@@ -149,62 +144,50 @@ namespace MixingData
             MixingDataMessagesTextBlock.Text = "Процедура обезличивания персональных данных запущена";
 
             //задаем набор позиций, определяющих процедуру обезличивания персональных данных
-            TNetwork.Position pa1 = new TNetwork.Position(true, 1);
-            TNetwork.Position pa2 = new TNetwork.Position(true, 1);
-            TNetwork.Position pa3 = new TNetwork.Position(true, 1);
-            TNetwork.Position pa4 = new TNetwork.Position(true, 1);
-            TNetwork.Position pa5 = new TNetwork.Position(true, 1);
-            TNetwork.Position pb1 = new TNetwork.Position(true, 1);
-            TNetwork.Position pb2 = new TNetwork.Position(true, 1);
-            TNetwork.Position pb3 = new TNetwork.Position(true, 1);
-            TNetwork.Position pb4 = new TNetwork.Position(true, 1);
-            TNetwork.Position pb5 = new TNetwork.Position(true, 1);
-            TNetwork.Position pZapObez = new TNetwork.Position(true, 1);
-            TNetwork.Position pZ1 = new TNetwork.Position(false, 0);
-            TNetwork.Position pZ2 = new TNetwork.Position(false, 0);
-            TNetwork.Position pZ3 = new TNetwork.Position(false, 0);
-            TNetwork.Position pZ4 = new TNetwork.Position(false, 0);
-            TNetwork.Position p1 = new TNetwork.Position(false, 0);
-            TNetwork.Position p3 = new TNetwork.Position(false, 0);
-            TNetwork.Position p4 = new TNetwork.Position(false, 0);
-            TNetwork.Position p6 = new TNetwork.Position(false, 0);
-            TNetwork.Position p10 = new TNetwork.Position(false, 0);
-            TNetwork.Position p11 = new TNetwork.Position(false, 0);
-            TNetwork.Position p9 = new TNetwork.Position(false, 0);
-            TNetwork.Position p12 = new TNetwork.Position(false, 0);
-            TNetwork.Position p13 = new TNetwork.Position(false, 0);
-            TNetwork.Position p14 = new TNetwork.Position(false, 0);
-            TNetwork.Position pKonecObez = new TNetwork.Position(false, 0);
+            var pa1 = new TNetwork.Position(true, 1);
+            var pa2 = new TNetwork.Position(true, 1);
+            var pa3 = new TNetwork.Position(true, 1);
+            var pa4 = new TNetwork.Position(true, 1);
+            var pa5 = new TNetwork.Position(true, 1);
+            var pb1 = new TNetwork.Position(true, 1);
+            var pb2 = new TNetwork.Position(true, 1);
+            var pb3 = new TNetwork.Position(true, 1);
+            var pb4 = new TNetwork.Position(true, 1);
+            var pb5 = new TNetwork.Position(true, 1);
+            var pZapObez = new TNetwork.Position(true, 1);
+            var pZ1 = new TNetwork.Position(false, 0);
+            var pZ2 = new TNetwork.Position(false, 0);
+            var pZ3 = new TNetwork.Position(false, 0);
+            var pZ4 = new TNetwork.Position(false, 0);
+            var p1 = new TNetwork.Position(false, 0);
+            var p3 = new TNetwork.Position(false, 0);
+            var p4 = new TNetwork.Position(false, 0);
+            var p6 = new TNetwork.Position(false, 0);
+            var p10 = new TNetwork.Position(false, 0);
+            var p11 = new TNetwork.Position(false, 0);
+            var p9 = new TNetwork.Position(false, 0);
+            var p12 = new TNetwork.Position(false, 0);
+            var p13 = new TNetwork.Position(false, 0);
+            var p14 = new TNetwork.Position(false, 0);
+            var pKonecObez = new TNetwork.Position(false, 0);
 
             //задаем набор переходов с формированием Fl и Fr, определяющий процедуру обезличивания персональных данных
-            TNetwork.Translation t2 = new TNetwork.Translation(new List<TNetwork.Position>() { pZapObez }, new List<TNetwork.Position>() { pZ1, pZ2, pZ3, pZ4 });
-            TNetwork.Translation t3 = new TNetwork.Translation(new List<TNetwork.Position>() { pa1, pa2, pa3 }, new List<TNetwork.Position>() { p1 });
-            TNetwork.Translation t5 = new TNetwork.Translation(new List<TNetwork.Position>() { pa4, pa5 }, new List<TNetwork.Position>() { p6 });
-            TNetwork.Translation t6 = new TNetwork.Translation(new List<TNetwork.Position>() { pb1, pb2, pb3 }, new List<TNetwork.Position>() { p4 });
-            TNetwork.Translation t8 = new TNetwork.Translation(new List<TNetwork.Position>() { pb4, pb5 }, new List<TNetwork.Position>() { p3 });
-            TNetwork.Translation t9 = new TNetwork.Translation(new List<TNetwork.Position>() { p1, p3 }, new List<TNetwork.Position>() { p10, p11 });
-            TNetwork.Translation t11 = new TNetwork.Translation(new List<TNetwork.Position>() { p4, p6 }, new List<TNetwork.Position>() { p9, p12 });
-            TNetwork.Translation t14 = new TNetwork.Translation(new List<TNetwork.Position>() { p11 }, new List<TNetwork.Position>() { p13 });
-            TNetwork.Translation t15 = new TNetwork.Translation(new List<TNetwork.Position>() { p12 }, new List<TNetwork.Position>() { p14 });
-            TNetwork.Translation t16 = new TNetwork.Translation(new List<TNetwork.Position>() { p13, p14 }, new List<TNetwork.Position>() { pKonecObez });
-
-            //переменные для хранения записей исходной таблицы персональных данных, которые будем между собой перемешивать
-            Person person1;
-            Person person2;
-
-            //переменные для записи в таблицу обезличенных персональных данных после выполнения перемешивания
-            NewPerson newPerson1;
-            NewPerson newPerson2;
-
-            //переменная для записи ключей для деобезличивания в таблицу с ключами после выполнения перемешивания
-            Key key1;
-            //Key key2;
+            var t2 = new TNetwork.Translation(new List<TNetwork.Position>() { pZapObez }, new List<TNetwork.Position>() { pZ1, pZ2, pZ3, pZ4 });
+            var t3 = new TNetwork.Translation(new List<TNetwork.Position>() { pa1, pa2, pa3 }, new List<TNetwork.Position>() { p1 });
+            var t5 = new TNetwork.Translation(new List<TNetwork.Position>() { pa4, pa5 }, new List<TNetwork.Position>() { p6 });
+            var t6 = new TNetwork.Translation(new List<TNetwork.Position>() { pb1, pb2, pb3 }, new List<TNetwork.Position>() { p4 });
+            var t8 = new TNetwork.Translation(new List<TNetwork.Position>() { pb4, pb5 }, new List<TNetwork.Position>() { p3 });
+            var t9 = new TNetwork.Translation(new List<TNetwork.Position>() { p1, p3 }, new List<TNetwork.Position>() { p10, p11 });
+            var t11 = new TNetwork.Translation(new List<TNetwork.Position>() { p4, p6 }, new List<TNetwork.Position>() { p9, p12 });
+            var t14 = new TNetwork.Translation(new List<TNetwork.Position>() { p11 }, new List<TNetwork.Position>() { p13 });
+            var t15 = new TNetwork.Translation(new List<TNetwork.Position>() { p12 }, new List<TNetwork.Position>() { p14 });
+            var t16 = new TNetwork.Translation(new List<TNetwork.Position>() { p13, p14 }, new List<TNetwork.Position>() { pKonecObez });
 
             //очищаем таблицы с обезличенными персональными данными и с ключами для обезличивания, сохранив все изменения в БД, перед обезличиванием
             ClearDepersonalizeDataGridAndKeysDataGrid();
 
             //запоминаем в N - число записей в таблице персональных данных
-            var N = db.Persons.Local.Count;
+            var N = Db.Persons.Local.Count;
             //считаем k - количество записей в каждом подмножестве
             int k;
             if (N % splitCount == 0)
@@ -226,13 +209,9 @@ namespace MixingData
                 return;
             }
 
-            //p - номер первой записи в каждом подмножестве
-            int p;
-            Person firstPerson;
-
             //создаем временный список с записями персональных данных и инициализируем его
-            List<Person> tempPersons = new List<Person>();
-            foreach (var person in db.Persons.Local)
+            var tempPersons = new List<Person>();
+            foreach (var person in Db.Persons.Local)
             {
                 tempPersons.Add(person);
             }
@@ -240,18 +219,19 @@ namespace MixingData
 
             //осуществляем циклический сдвиг на shift в каждом подмножестве множества элементов персональных данных и результат помещаем в новый список (уже со сдвигом элементов) персональных данных
             #region это алгоритм смещения элементов множества на shift влево
-            int last; //будет хранить номер последнего элемента в каждом подмножестве
-            for (int i = 0; i < splitCount; i++)
+
+            for (var i = 0; i < splitCount; i++)
             {
-                p = k * i; //номер первой записи в каждом подмножестве
+                //p - номер первой записи в каждом подмножестве
+                var p = k * i;
                 //shift раз сдвигаем влево на 1 элемент
-                for (int s = 0; s < shift; s++)
+                for (var s = 0; s < shift; s++)
                 {
                     //запоминаем первый элемент подмножества
-                    firstPerson = tempPersons[p];
-                    last = p + k - 1;
+                    var firstPerson = tempPersons[p];
+                    var last = p + k - 1; //будет хранить номер последнего элемента в каждом подмножестве
                     //смещаем все элементы подмножества на 1 влево
-                    for (int j = p; j < p + k; j++)
+                    for (var j = p; j < p + k; j++)
                     {
                         if (j + 1 < N)
                             tempPersons[j] = tempPersons[j + 1];
@@ -268,7 +248,7 @@ namespace MixingData
             #endregion
 
             //для всех элементов нового списка персональных данных
-            for (int i = 0; i < tempPersons.Count; i++)
+            for (var i = 0; i < tempPersons.Count; i++)
             {
                 //задаем начальную маркировку для набора позиций, определяющих процедуру обезличивания персональных данных
                 pa1 = new TNetwork.Position(true, 1);
@@ -311,27 +291,29 @@ namespace MixingData
                 t16 = new TNetwork.Translation(new List<TNetwork.Position>() { p13, p14 }, new List<TNetwork.Position>() { pKonecObez });
 
                 //будем перемещивать аттрибуты исходных персональных данных и получившихся после смещения на shift в каждом подмножестве
-                person1 = db.Persons.Local[i];
-                person2 = tempPersons[i];
+                var person1 = Db.Persons.Local[i];
+                var person2 = tempPersons[i];
 
                 //задаем наборы значений аттрибутов двух записей в таблице персональных данных, передаваемых Т-сети
-                List<string> firstPersonAttributes = new List<string>();
+                var firstPersonAttributes = new List<string>();
                 firstPersonAttributes.Add(person1.Id.ToString());
                 firstPersonAttributes.Add(person1.LastName);
                 firstPersonAttributes.Add(person1.FirstName);
                 firstPersonAttributes.Add(person1.Patronymic);
                 firstPersonAttributes.Add(person1.DateOfBirth.ToString("{0:dd.MM.yyyy}"));
                 firstPersonAttributes.Add(person1.Address);
-                List<string> secondPersonAttributes = new List<string>();
-                secondPersonAttributes.Add(person2.Id.ToString());
-                secondPersonAttributes.Add(person2.LastName);
-                secondPersonAttributes.Add(person2.FirstName);
-                secondPersonAttributes.Add(person2.Patronymic);
-                secondPersonAttributes.Add(person2.DateOfBirth.ToString("{0:dd.MM.yyyy}"));
-                secondPersonAttributes.Add(person2.Address);
+                var secondPersonAttributes = new List<string>
+                {
+                    person2.Id.ToString(),
+                    person2.LastName,
+                    person2.FirstName,
+                    person2.Patronymic,
+                    person2.DateOfBirth.ToString("{0:dd.MM.yyyy}"),
+                    person2.Address
+                };
 
                 //создаем экземпляр класса, реализующего Т-сеть
-                TNetwork tNet = new TNetwork(firstPersonAttributes, secondPersonAttributes);
+                var tNet = new TNetwork(firstPersonAttributes, secondPersonAttributes);
 
                 //меняем фон у StatusBar'а и выводим в него сообщение
                 MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -368,12 +350,12 @@ namespace MixingData
                 if (pKonecObez.marked)
                 {
                     //создаем записи добавляем их в таблицу с обезличенными персональными записями
-                    newPerson2 = new NewPerson() { Id = new Guid(tNet.secondAttributValues[0]), LastName = tNet.secondAttributValues[1], FirstName = tNet.secondAttributValues[2], Patronymic = tNet.secondAttributValues[3], DateOfBirth = DateTime.ParseExact(tNet.secondAttributValues[4], "{0:dd.MM.yyyy}", new CultureInfo("ru-RU")), Address = tNet.secondAttributValues[5] };
-                    db.NewPersons.Local.Add(newPerson2);
+                    var newPerson2 = new NewPerson() { Id = new Guid(tNet.secondAttributValues[0]), LastName = tNet.secondAttributValues[1], FirstName = tNet.secondAttributValues[2], Patronymic = tNet.secondAttributValues[3], DateOfBirth = DateTime.ParseExact(tNet.secondAttributValues[4], "{0:dd.MM.yyyy}", new CultureInfo("ru-RU")), Address = tNet.secondAttributValues[5] };
+                    Db.NewPersons.Local.Add(newPerson2);
 
                     //создаем записи добавляем их в таблицу с ключами для деобезличивания
-                    key1 = new Key() { Id = Guid.NewGuid(), Key1 = new Guid(tNet.firstAttributValues[0]), Key2 = newPerson2.Id };
-                    db.Keys.Local.Add(key1);
+                    var key1 = new Key() { Id = Guid.NewGuid(), Key1 = new Guid(tNet.firstAttributValues[0]), Key2 = newPerson2.Id };
+                    Db.Keys.Local.Add(key1);
 
                     //меняем фон у StatusBar'а и выводим в него сообщение
                     MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -393,19 +375,19 @@ namespace MixingData
                 }
             }
             //сохраняем изменения в БД
-            db.SaveChanges();
+            Db.SaveChanges();
         }
 
         public void ClearDepersonalizeDataGridAndKeysDataGrid()
         {
             //очищаем таблицу с обезличенными персональными данными перед обезличиванием
-            db.NewPersons.Local.Clear();
+            Db.NewPersons.Local.Clear();
 
             //очищаем таблицу с ключами для деобезличивания перед обезличиванием
-            db.Keys.Local.Clear();
+            Db.Keys.Local.Clear();
 
             //сохраняем все изменения в БД перед запуском процедуры обезличивания
-            db.SaveChanges();
+            Db.SaveChanges();
 
             //меняем фон у StatusBar'а и выводим в него сообщение
             MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -426,7 +408,7 @@ namespace MixingData
         //выводит сообщение с информацией о программе
         private void MixingDataAboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Данная программа реализует сетевую модель обезличивания персональных данных методом перемешивания.\nАвтор: Н.Чеботов", "О программе ", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Данная программа реализует сетевую модель обезличивания персональных данных методом перемешивания.\nАвтор: 'unchase'", "О программе ", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void MixingDataCancelDepersonalizeButton_Click(object sender, RoutedEventArgs e)
@@ -436,45 +418,40 @@ namespace MixingData
             MixingDataMessagesTextBlock.Text = "Процедура деобезличивания персональных данных запущена";
 
             //задаем набор позиций, определяющих процедуру обезличивания персональных данных
-            TNetwork.Position pZapDeobez = new TNetwork.Position(true, 1);
-            TNetwork.Position p9 = new TNetwork.Position(true, 1);
-            TNetwork.Position p10 = new TNetwork.Position(true, 1);
-            TNetwork.Position p7 = new TNetwork.Position(false, 0);
-            TNetwork.Position p8 = new TNetwork.Position(false, 0);
-            TNetwork.Position p2 = new TNetwork.Position(false, 0);
-            TNetwork.Position p5 = new TNetwork.Position(false, 0);
-            TNetwork.Position pa1 = new TNetwork.Position(false, 0);
-            TNetwork.Position pa2 = new TNetwork.Position(false, 0);
-            TNetwork.Position pa3 = new TNetwork.Position(false, 0);
-            TNetwork.Position pa4 = new TNetwork.Position(false, 0);
-            TNetwork.Position pa5 = new TNetwork.Position(false, 0);
-            TNetwork.Position pb1 = new TNetwork.Position(false, 0);
-            TNetwork.Position pb2 = new TNetwork.Position(false, 0);
-            TNetwork.Position pb3 = new TNetwork.Position(false, 0);
-            TNetwork.Position pb4 = new TNetwork.Position(false, 0);
-            TNetwork.Position pb5 = new TNetwork.Position(false, 0);
-            TNetwork.Position pK1 = new TNetwork.Position(false, 0);
-            TNetwork.Position pK2 = new TNetwork.Position(false, 0);
-            TNetwork.Position pKonecDeobez = new TNetwork.Position(false, 0);
+            var pZapDeobez = new TNetwork.Position(true, 1);
+            var p9 = new TNetwork.Position(true, 1);
+            var p10 = new TNetwork.Position(true, 1);
+            var p7 = new TNetwork.Position(false, 0);
+            var p8 = new TNetwork.Position(false, 0);
+            var p2 = new TNetwork.Position(false, 0);
+            var p5 = new TNetwork.Position(false, 0);
+            var pa1 = new TNetwork.Position(false, 0);
+            var pa2 = new TNetwork.Position(false, 0);
+            var pa3 = new TNetwork.Position(false, 0);
+            var pa4 = new TNetwork.Position(false, 0);
+            var pa5 = new TNetwork.Position(false, 0);
+            var pb1 = new TNetwork.Position(false, 0);
+            var pb2 = new TNetwork.Position(false, 0);
+            var pb3 = new TNetwork.Position(false, 0);
+            var pb4 = new TNetwork.Position(false, 0);
+            var pb5 = new TNetwork.Position(false, 0);
+            var pK1 = new TNetwork.Position(false, 0);
+            var pK2 = new TNetwork.Position(false, 0);
+            var pKonecDeobez = new TNetwork.Position(false, 0);
 
             //задаем набор переходов с формированием Fl и Fr, определяющий процедуру обезличивания персональных данных
-            TNetwork.Translation t13 = new TNetwork.Translation(new List<TNetwork.Position>() { p7, p8 }, new List<TNetwork.Position>() { p9, p10, pZapDeobez });
-            TNetwork.Translation t10 = new TNetwork.Translation(new List<TNetwork.Position>() { p2 }, new List<TNetwork.Position>() { p7 });
-            TNetwork.Translation t12 = new TNetwork.Translation(new List<TNetwork.Position>() { p5 }, new List<TNetwork.Position>() { p8 });
-            TNetwork.Translation t7 = new TNetwork.Translation(new List<TNetwork.Position>() { pb1, pb2, pb3, pb4, pb5, pK2 }, new List<TNetwork.Position>() { p5 });
-            TNetwork.Translation t4 = new TNetwork.Translation(new List<TNetwork.Position>() { pa1, pa2, pa3, pa4, pa5, pK1 }, new List<TNetwork.Position>() { p2 });
-            TNetwork.Translation t1 = new TNetwork.Translation(new List<TNetwork.Position>() { pKonecDeobez }, new List<TNetwork.Position>() { pK1, pK2 });
-
-            NewPerson newPerson1;
-            NewPerson newPerson2;
-
-            Person person1;
+            var t13 = new TNetwork.Translation(new List<TNetwork.Position>() { p7, p8 }, new List<TNetwork.Position>() { p9, p10, pZapDeobez });
+            var t10 = new TNetwork.Translation(new List<TNetwork.Position>() { p2 }, new List<TNetwork.Position>() { p7 });
+            var t12 = new TNetwork.Translation(new List<TNetwork.Position>() { p5 }, new List<TNetwork.Position>() { p8 });
+            var t7 = new TNetwork.Translation(new List<TNetwork.Position>() { pb1, pb2, pb3, pb4, pb5, pK2 }, new List<TNetwork.Position>() { p5 });
+            var t4 = new TNetwork.Translation(new List<TNetwork.Position>() { pa1, pa2, pa3, pa4, pa5, pK1 }, new List<TNetwork.Position>() { p2 });
+            var t1 = new TNetwork.Translation(new List<TNetwork.Position>() { pKonecDeobez }, new List<TNetwork.Position>() { pK1, pK2 });
 
             //очищаем таблицу записей с персональными данными
-            db.Persons.Local.Clear();
+            Db.Persons.Local.Clear();
 
             //для каждого набора ключей для деобезличивания восстанавливаем персональные данные
-            foreach (var key in db.Keys.Local)
+            foreach (var key in Db.Keys.Local)
             {
                 //задаем исходную маркировку для набора позиций, определяющих процедуру обезличивания персональных данных
                 pZapDeobez = new TNetwork.Position(true, 1);
@@ -506,27 +483,31 @@ namespace MixingData
                 t4 = new TNetwork.Translation(new List<TNetwork.Position>() { pa1, pa2, pa3, pa4, pa5, pK1 }, new List<TNetwork.Position>() { p2 });
                 t1 = new TNetwork.Translation(new List<TNetwork.Position>() { pKonecDeobez }, new List<TNetwork.Position>() { pK1, pK2 });
 
-                newPerson1 = db.NewPersons.Find(key.Key1);
-                newPerson2 = db.NewPersons.Find(key.Key2);
+                var newPerson1 = Db.NewPersons.Find(key.Key1);
+                var newPerson2 = Db.NewPersons.Find(key.Key2);
 
                 //задаем наборы значений аттрибутов двух записей в таблице персональных данных, передаваемых Т-сети
-                List<string> firstPersonAttributes = new List<string>();
-                firstPersonAttributes.Add(newPerson1.Id.ToString());
-                firstPersonAttributes.Add(newPerson1.LastName);
-                firstPersonAttributes.Add(newPerson1.FirstName);
-                firstPersonAttributes.Add(newPerson1.Patronymic);
-                firstPersonAttributes.Add(newPerson1.DateOfBirth.ToString("{0:dd.MM.yyyy}"));
-                firstPersonAttributes.Add(newPerson1.Address);
-                List<string> secondPersonAttributes = new List<string>();
-                secondPersonAttributes.Add(newPerson2.Id.ToString());
-                secondPersonAttributes.Add(newPerson2.LastName);
-                secondPersonAttributes.Add(newPerson2.FirstName);
-                secondPersonAttributes.Add(newPerson2.Patronymic);
-                secondPersonAttributes.Add(newPerson2.DateOfBirth.ToString("{0:dd.MM.yyyy}"));
-                secondPersonAttributes.Add(newPerson2.Address);
+                var firstPersonAttributes = new List<string>
+                {
+                    newPerson1.Id.ToString(),
+                    newPerson1.LastName,
+                    newPerson1.FirstName,
+                    newPerson1.Patronymic,
+                    newPerson1.DateOfBirth.ToString("{0:dd.MM.yyyy}"),
+                    newPerson1.Address
+                };
+                var secondPersonAttributes = new List<string>
+                {
+                    newPerson2.Id.ToString(),
+                    newPerson2.LastName,
+                    newPerson2.FirstName,
+                    newPerson2.Patronymic,
+                    newPerson2.DateOfBirth.ToString("{0:dd.MM.yyyy}"),
+                    newPerson2.Address
+                };
 
                 //создаем экземпляр класса, реализующего Т-сеть
-                TNetwork tNet = new TNetwork(firstPersonAttributes, secondPersonAttributes);
+                var tNet = new TNetwork(firstPersonAttributes, secondPersonAttributes);
 
                 //меняем фон у StatusBar'а и выводим в него сообщение
                 MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -559,8 +540,8 @@ namespace MixingData
                 if (pKonecDeobez.marked)
                 {
                     //создаем записи добавляем их в таблицу с обезличенными персональными записями
-                    person1 = new Person() { Id = new Guid(tNet.firstAttributValues[0]), LastName = tNet.firstAttributValues[1], FirstName = tNet.firstAttributValues[2], Patronymic = tNet.firstAttributValues[3], DateOfBirth = DateTime.ParseExact(tNet.firstAttributValues[4], "{0:dd.MM.yyyy}", new CultureInfo("ru-RU")), Address = tNet.firstAttributValues[5] };
-                    db.Persons.Local.Add(person1);
+                    var person1 = new Person() { Id = new Guid(tNet.firstAttributValues[0]), LastName = tNet.firstAttributValues[1], FirstName = tNet.firstAttributValues[2], Patronymic = tNet.firstAttributValues[3], DateOfBirth = DateTime.ParseExact(tNet.firstAttributValues[4], "{0:dd.MM.yyyy}", new CultureInfo("ru-RU")), Address = tNet.firstAttributValues[5] };
+                    Db.Persons.Local.Add(person1);
 
                     //меняем фон у StatusBar'а и выводим в него сообщение
                     MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -577,16 +558,16 @@ namespace MixingData
                 }
             }
             //сохраняем изменения в БД
-            db.SaveChanges();
+            Db.SaveChanges();
         }
 
         private void MixingDataClearPersonDataButton_Click(object sender, RoutedEventArgs e)
         {
             //очищаем таблицу с персональными данными
-            db.Persons.Local.Clear();
+            Db.Persons.Local.Clear();
 
             //сохраняем изменения в БД
-            db.SaveChanges();
+            Db.SaveChanges();
 
             //меняем фон у StatusBar'а и выводим в него сообщение
             MixingDataMessagesStatusBar.Background = new SolidColorBrush(Color.FromRgb(225, 225, 225));
@@ -599,10 +580,10 @@ namespace MixingData
             MixingDataDepersonalizeDataDataGrid.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
             ApplicationCommands.Copy.Execute(null, MixingDataDepersonalizeDataDataGrid);
             MixingDataDepersonalizeDataDataGrid.UnselectAllCells();
-            String result = (string)Clipboard.GetData(DataFormats.UnicodeText);
+            var result = (string)Clipboard.GetData(DataFormats.UnicodeText);
             try
             {
-                StreamWriter sw = new StreamWriter("export.txt");
+                var sw = new StreamWriter("export.txt");
                 sw.WriteLine(result);
                 sw.Close();
                 Process.Start("export.txt");

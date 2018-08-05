@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Data;
 
 namespace MixingData.Converters
@@ -13,13 +10,10 @@ namespace MixingData.Converters
         {
             try
             {
-                bool isChecked = (bool)value;
-                switch (isChecked)
+                switch ((bool)value)
                 {
                     case true:
                         return System.Windows.Visibility.Hidden;
-                    case false:
-                        return System.Windows.Visibility.Visible;
                     default:
                         return System.Windows.Visibility.Visible;
                 }

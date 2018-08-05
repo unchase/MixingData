@@ -101,7 +101,6 @@ e:\Work\Git\MixingData\mixingdata\MixingData\bin\Debug\System.Data.SqlServerCe.d
 e:\Work\Git\MixingData\mixingdata\MixingData\bin\Debug\EntityFramework.xml
 e:\Work\Git\MixingData\mixingdata\MixingData\bin\Debug\EntityFramework.SqlServer.xml
 e:\Work\Git\MixingData\mixingdata\MixingData\bin\Debug\EntityFramework.SqlServerCompact.xml
-e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.csprojResolveAssemblyReference.cache
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MainWindow.g.cs
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\App.g.cs
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -111,3 +110,5 @@ e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MainWindow.baml
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.g.resources
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.Properties.Resources.resources
 e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.csproj.GenerateResource.Cache
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.csproj.CoreCompileInputs.cache
+e:\Work\Git\MixingData\mixingdata\MixingData\obj\Debug\MixingData.csproj.CopyComplete
